@@ -8,6 +8,7 @@ import com.didiglobal.turbo.engine.model.FlowElement;
 import com.didiglobal.turbo.engine.util.FlowModelUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,18 +19,23 @@ public class ExecutorFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExecutorFactory.class);
 
+    @Lazy
     @Resource
     private StartEventExecutor startEventExecutor;
 
+    @Lazy
     @Resource
     private EndEventExecutor endEventExecutor;
 
+    @Lazy
     @Resource
     private SequenceFlowExecutor sequenceFlowExecutor;
 
+    @Lazy
     @Resource
     private UserTaskExecutor userTaskExecutor;
 
+    @Lazy
     @Resource
     private ExclusiveGatewayExecutor exclusiveGatewayExecutor;
 

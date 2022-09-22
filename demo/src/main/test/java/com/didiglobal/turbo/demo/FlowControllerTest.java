@@ -1,5 +1,6 @@
-package com.didiglobal.turbo.demo;
+package java.com.didiglobal.turbo.demo;
 
+import com.didiglobal.turbo.demo.DemoApplication;
 import com.didiglobal.turbo.demo.controller.FlowController;
 import com.didiglobal.turbo.demo.pojo.request.CreateFlowRequest;
 import com.didiglobal.turbo.demo.pojo.request.DeployFlowRequest;
@@ -11,11 +12,10 @@ import com.didiglobal.turbo.demo.pojo.response.CreateFlowResponse;
 import com.didiglobal.turbo.demo.pojo.response.DeployFlowResponse;
 import com.didiglobal.turbo.demo.pojo.response.FlowModuleListResponse;
 import com.didiglobal.turbo.demo.pojo.response.GetFlowModuleResponse;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.annotation.Resource;
 
@@ -27,7 +27,6 @@ import javax.annotation.Resource;
  * @Description: 接口测试类
  */
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
 public class FlowControllerTest {
 
@@ -51,7 +50,7 @@ public class FlowControllerTest {
         createFlowRequest.setOperator("testOperator");// 操作人 非必需
         createFlowRequest.setRemark("备注test");  //备注  非必需
         BaseResponse<CreateFlowResponse> res = flowController.createFlow(createFlowRequest);
-        Assert.assertTrue(res.getErrCode() == 1000); //1000 成功
+        assertThat(res.getErrCode() == 1000).isTrue(); //1000 成功
         flowModuleId = res.getData().getFlowModuleId();//模型唯一标识  必需
         String str = "createFlow 处理成功 flowModuleId:%s";
         System.out.println(String.format(str, flowModuleId));
@@ -74,7 +73,7 @@ public class FlowControllerTest {
         updateFlowRequest.setRemark("备注test");//备注  非必需
         updateFlowRequest.setOperator("testOperator");// 操作人 非必需
         BaseResponse<String> res = flowController.saveFlowModel(updateFlowRequest);
-        Assert.assertTrue(res.getErrCode() == 1000); //1000 成功
+        assertThat(res.getErrCode() == 1000).isTrue(); //1000 成功
 
     }
 
@@ -90,7 +89,7 @@ public class FlowControllerTest {
         deployFlowRequest.setCaller("testCaller");// 使用方标识  必需
         deployFlowRequest.setOperator("testOperator"); // 操作人 非必需
         BaseResponse<DeployFlowResponse> res = flowController.deployFlow(deployFlowRequest);
-        Assert.assertTrue(res.getErrCode() == 1000); //1000 成功
+        assertThat(res.getErrCode() == 1000).isTrue(); //1000 成功
 
         String flowModuleId = res.getData().getFlowModuleId();//模型唯一标识  必需
         flowDeployId = res.getData().getFlowDeployId();//模型一次部署唯一标识  必需
@@ -108,7 +107,7 @@ public class FlowControllerTest {
         getFlowModuleRequest.setFlowModuleId(flowModuleId);//模型唯一标识 两个参数必须传入一个
         getFlowModuleRequest.setFlowDeployId(flowDeployId);//模型一次部署唯一标识 两个参数必须传入一个
         BaseResponse<GetFlowModuleResponse> res = flowController.queryFlow(getFlowModuleRequest);
-        Assert.assertTrue(res.getErrCode() == 1000); //1000 成功
+        assertThat(res.getErrCode() == 1000).isTrue(); //1000 成功
 
         GetFlowModuleResponse getFlowModuleResponse = res.getData();
         getFlowModuleResponse.getFlowModel();//模型内容 必需
@@ -137,7 +136,7 @@ public class FlowControllerTest {
         getFlowModuleListRequest.setCurrent(1);//当前页  非必需 默认为1
         getFlowModuleListRequest.setSize(10);//每页条数   非必需 默认为10
         BaseResponse<FlowModuleListResponse> res = flowController.queryFlowList(getFlowModuleListRequest);
-        Assert.assertTrue(res.getErrCode() == 1000); //1000 成功
+        assertThat(res.getErrCode() == 1000).isTrue(); //1000 成功
 
         String str = "queryFlowList 处理成功   总条数:%s  当前页：%s 每页条数：%s";
         str = String.format(str, res.getData().getTotal(), res.getData().getCurrent(), res.getData().getSize());

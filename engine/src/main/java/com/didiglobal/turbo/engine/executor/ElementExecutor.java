@@ -24,8 +24,8 @@ import java.util.Map;
 
 public abstract class ElementExecutor extends RuntimeExecutor {
 
-    @Resource
-    protected ExpressionCalculator expressionCalculator;
+//    @Resource
+//    protected ExpressionCalculator expressionCalculator;
 
     @Override
     public void execute(RuntimeContext runtimeContext) throws ProcessException {
@@ -316,6 +316,7 @@ public abstract class ElementExecutor extends RuntimeExecutor {
 
     protected boolean processCondition(String expression, Map<String, InstanceData> instanceDataMap) throws ProcessException {
         Map<String, Object> dataMap = InstanceDataUtil.parseInstanceDataMap(instanceDataMap);
-        return expressionCalculator.calculate(expression, dataMap);
+//        return expressionCalculator.calculate(expression, dataMap);
+        return true;
     }
 }

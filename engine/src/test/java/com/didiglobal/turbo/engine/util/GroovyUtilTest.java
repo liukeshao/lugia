@@ -24,15 +24,15 @@ public class GroovyUtilTest {
      *
      */
 
-    @Test
-    public void fun1(){
-        try {
-            String expression = "";
-            Map<String, Object> dataMap = Maps.newHashMap();
-            Object result = GroovyUtil.execute(expression, dataMap);
-            LOGGER.warn("result:{}:{}", result.getClass().getSimpleName(), result);
-        } catch (Exception e) {
-            LOGGER.warn("catch exception", e);
-        }
-    }
+//    @Test
+//    public void fun1(){
+//        try {
+//            String expression = "";
+//            Map<String, Object> dataMap = Maps.newHashMap();
+//            Object result = GroovyUtil.execute(expression, dataMap);
+//            LOGGER.warn("result:{}:{}", result.getClass().getSimpleName(), result);
+//        } catch (Exception e) {
+//            LOGGER.warn("catch exception", e);
+//        }
+//    }
 }
